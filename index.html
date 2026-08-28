@@ -12,7 +12,7 @@
     <div class="container">
         <header>
             <div class="brand">
-                <h1>Partido<span>pulso</span></h1>
+                <h1>Torneos<span>Arg</span></h1>
             </div>
             <button id="refresh-btn" class="refreshbtn">
                 <span class="refresh-icon"></span>Actualizar
@@ -34,7 +34,21 @@
                     <option value="ALL">Copa Argentina</option>
                 </select>
             </div>
+
+             <div class="tabs-container">
+                <button class="tab-btn active" data-category="all">Todos <span id="count-all">(0)</span></button>
+                <button class="tab-btn" data-category="live">Vivo <span id="count-live">(0)</span></button>
+
+                <button class="tab-btn" data-category="finished">Terminados <span id="count-finished">(0)</span></button>
+                <button class="tab-btn" data-category="upcoming">Próximos <span id="count-upcoming">(0)</span></button>
+            </div>
+        </div>
+
+        <div id="matches-grid" class="matches-grid">
+            <div id="status-msg" class="no-matches-msg">Cargando jugados...</div>
         </div>
     </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
