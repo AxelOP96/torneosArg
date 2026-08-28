@@ -15,11 +15,26 @@
                 <h1>Partido<span>pulso</span></h1>
             </div>
             <button id="refresh-btn" class="refreshbtn">
-                <span class="refresh-icon"></span>Refresh
+                <span class="refresh-icon"></span>Actualizar
             </button>
         </header>
 
-        <div id="alert-box" class="alert" style="display:none"></div>
+        <div id="alert-box" class="alert" style="display:none;"></div>
+
+        <div class="controls-bar">
+            <div class="league-selector">
+                <label for="league-select">Liga:</label>
+                <select name="" id="league-filter" class="league-select">
+                    
+                    <option value="ALL">Todas las ligas</option>
+                    <option value="CL">UEFA Champions League</option>
+                    <option value="ALL">Torneo argentino</option>
+                    <option value="ALL">Copa Libertadores</option>
+                    <option value="ALL">Copa Sudamericana</option>
+                    <option value="ALL">Copa Argentina</option>
+                </select>
+            </div>
+        </div>
     </div>
 </body>
 </html>
