@@ -1,0 +1,40 @@
+:root{
+    --bg: #0f172a;
+    --card-bg: #1e29eb;
+    --accent: #10b981;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --live-red: #ef4444;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body{
+    background-color: var(--bg);
+    color: var(--text-muted);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+.container{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1 px solid var(--border);
+}
+
+.brand span{
+    color:var(--accent);
+}
