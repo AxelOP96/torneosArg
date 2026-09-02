@@ -78,3 +78,50 @@ header{
         justify-content: space-between;
     }
 }
+
+.league-selector{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+
+}
+.dropdown{
+    background: var(--card-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.dropdown:focus{
+    border-color: var(--accent);
+}
+.filter-tabs{
+    display: flex;
+    gap: .25rem;
+    background: var(--card-bg);
+    padding: .35rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    overflow-x: auto;
+}
+
+.tab-btn{
+    flex: 1;
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: .5rem .75rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
