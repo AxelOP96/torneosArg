@@ -279,3 +279,47 @@ header{
     color: var(--accent);
     font-weight: 700;
 }
+.goal-type{
+    font-size: .7rem;
+    opacity: .7;
+
+}
+.match-goals.no-details{
+    display: block;
+    text-align: center;
+    color: var(--text-muted, #888);
+    font-style: italic;
+    font-size: .75rem;
+}
+
+#league-filter{
+    position: relative;
+    z-index: 99;
+    pointer-events: auto !important;
+    cursor: pointer;
+    appearance: auto;
+    -webkit-appearance: auto;
+}
+.status-badge.live{
+    background-color: #dc3545;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    animation: liveBlink 1.2s infinite ease-in-out;
+}
+@keyframes liveBlink{
+    0%{
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(220,53, 69,.7);
+    }
+    50%{
+        opacity: 0.35;
+        box-shadow: 0 0 8px 3px rgba(220, 53, 69, 0);
+    }
+    100%{
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
