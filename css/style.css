@@ -34,7 +34,47 @@ header{
     padding-bottom: 1rem;
     border-bottom: 1 px solid var(--border);
 }
-
+.brand h1{
+    font-size: 1.5rem;
+    font-weight: 800;
+}
 .brand span{
     color:var(--accent);
+}
+.refresh-btn{
+    background: var(--card-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+.refresh-btn:hover{
+    border-color: var(--accent);
+    color: var(--accent);
+}
+.refresh-icon{
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+.refresh-btn.loading .refresh-icon{
+    animation: spin 1s linear infinite;
+}
+.controls-bar{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+@media (min-width: 640px) {
+    .controls-bar{
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
