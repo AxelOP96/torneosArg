@@ -222,3 +222,60 @@ header{
     font-weight: 600;
     font-size: 1rem;
 }
+.score-board{
+    background: var(--bg);
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    border: 1px solid var(--border);
+    text-align: center;
+    min-width: 90px;
+}
+.no-matches-msg{
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+@keyframes spin{
+    100% {transform:rotate(360deg)};
+}
+@keyframes pulse{
+    0%, 100% {opacity: 1};
+    50% { opacity: 0.5;}
+}
+.match-goals{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-top: 0.75rem;
+    margin-top: 0.75rem;
+    border-top: 1px dashed var(--border);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.goals-column{
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+.home-goals{
+    text-align: right;
+}
+.away-goals{
+    text-align: left;
+}
+
+.goal-item{
+    line-height: 1.4;
+
+}
+.goal-time{
+    color: var(--accent);
+    font-weight: 700;
+}
