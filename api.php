@@ -31,9 +31,31 @@ try{
         $category = 'upcoming';
         if(in_array($status, ['IN_PLAY', 'PAUSED', 'HALFTIME', 'LIVE'])){
             $category = 'live';
-        }elseif(in_array($status, ['FINISHED', 'AWARDED', ])){
+        }elseif(in_array($status, ['FINISHED', 'AWARDED' ])){
             $category = 'finished';
         }
+        $goals= [];
+        if(!empty($match['goals'])){
+            foreach($match['goals'] as $goal){
+                $goals[] = [
+                            'minite' => $goal['minite'] ?? '',
+                            'scorer' => $goal['scorer']['name'] ?? 'Goal',
+                            'team' => ($goal['team']['id'] === $match['homeTeam']['id']) ? 'home' : 'away'
+                            ];
+            }
+        }
+
+        $formattedMatches[] = [
+            'id' => $match['id'] ?? null,
+            'competition' => $match['competition']['name'] ?? 'other',
+            'competitionCode' => $match['competition']['code'] ?? 'OTHER',
+            'category' => $category,
+            'status' => $status,
+            'utcDate' => $match['utcDate'] ?? null,
+            'minite' => $match['minite'] ?? null,
+            'time' => isset($match['utcDate']) ? date('H:i', strtotime($match['utcDate'])) : 'TBD',
+
+        ];
     }
 
 } catch( Exception){
