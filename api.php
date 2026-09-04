@@ -54,6 +54,21 @@ try{
             'utcDate' => $match['utcDate'] ?? null,
             'minite' => $match['minite'] ?? null,
             'time' => isset($match['utcDate']) ? date('H:i', strtotime($match['utcDate'])) : 'TBD',
+            'homeTeam' => 
+                        ['name' => $match['homeTeam']['name'] ?? 'Home Team',
+                        'crest' => $match['homeTeam']['crest'] ?? ''
+
+                        ],
+            'awayTeam' => 
+                        [
+                            'name' => $match['awayTeam']['name'] ?? 'Away Team',
+                        'crest' => $match['awayTeam']['crest'] ?? ''
+                        ],
+            'score' => [
+                        'home' => $match['score']['fullTime']['home'] ?? $match['score']['halfTime']['home'] ?? 0,
+                        'away' => $match['score']['fullTime']['away'] ?? $match['score']['halfTime']['away'] ?? 0
+            ],
+            'goals' => $goals
 
         ];
     }
