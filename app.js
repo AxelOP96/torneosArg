@@ -78,3 +78,27 @@ async function fetchMatches(){
         }
     }
 }
+
+function applyFilters(){
+    const grid = document.getElementById('matches-grid') || document.querySelector('.matches-grid');
+
+    if(!grid){
+        return ;
+    }
+    let filtered= [...(window.rawMatches || [])];
+    const targetLeague = String(window.currentLeague || 'ALL').trim().toUpperCase();
+
+    if(targetLeague !== 'ALL'){
+        filtered = filtered.filter(m => {
+            const matchCode = String(m.competitionCode || '').trim().toUpperCase();
+            const matchName = String(m.competition || '').trim().toUpperCase();
+            return matchCode === targetLeague || matchName === targetLeague;
+        })
+    }
+    updateCounts({
+        all:filtered.length,
+        live: filtered.filter(m => String(m.category).toLowerCase() === 'live').length,
+        finished: filtered.filter(m => String(m.category).toLowerCase() ==='finished').length,
+        upcoming: filtered.filter(m => String(m.category).toLowerCase() === 'upcoming').length
+    });
+}
