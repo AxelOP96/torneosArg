@@ -101,4 +101,22 @@ function applyFilters(){
         finished: filtered.filter(m => String(m.category).toLowerCase() ==='finished').length,
         upcoming: filtered.filter(m => String(m.category).toLowerCase() === 'upcoming').length
     });
+    const targetCategory = String(window.currentCategory || 'all').toLowerCase();
+    if(targetCategory !== 'all'){
+        filtered = filtered.filter(m => String(m.category || '').toLowerCase() === targetCategory);
+    }
+
+    renderMatches(filtered, grid);
+}
+
+function updateCounts(counts = {}){
+    const elAll = document.getElementById('count-all');
+    const elLive = document.getElementById('count-live');
+    const elFinished = document.getElementById('count-finished');
+    const elUpcoming = document.getElementById('count-upcoming');
+
+    if(elAll) elAll.textContent = `(${counts.all ?? 0})`;
+    if(elLive) elLive.textContent = `(${counts.live ?? 0})`;
+    if(elFinished) elFinished.textContent = `(${counts.finished ?? 0})`;
+    if(elUpcoming) elUpcoming.textContent = `(${counts.upcoming ?? 0})`;
 }
