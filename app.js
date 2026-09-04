@@ -29,3 +29,27 @@ function bindGlobalEvents(){
         }
     });
 }
+
+async function fetchMatches(){
+    const grid = document.getElementById('matches-grid') || document.querySelector('.matches-grid');
+    const alertBox = document.getElementById('alert-box') || document.querySelector('.alert');
+    const refreshBtn = document.getElementById('refresh-btn');
+
+    if(refreshBtn){
+        refreshBtn.classList.add('loading');
+        refreshBtn.disable = true;
+    }
+    if(alertBox){
+        alertBox.style.display = 'none';
+    }
+    try{
+        const response = await fetch('api.php?t='+new Date().getTime());
+        let rawText = await response.text;
+
+        rawText = rawText.replace(/^\uFEFF/,'').trim();
+        const firstBrace = rawText.indexOf('{');
+        const lastBrace = rawText.lastIndexOf('}');
+
+        
+    }catch()
+}
