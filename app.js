@@ -50,6 +50,31 @@ async function fetchMatches(){
         const firstBrace = rawText.indexOf('{');
         const lastBrace = rawText.lastIndexOf('}');
 
+        if(firstBrace !== -1 && lastBrace !== -1){
+            rawText = rawText.substring(firstBrace, lastBrace +1);
+        }
+
+        const data = JSON.parse(rawText);
+
+        if(data.error){
+            throw new Error(data.error);
+
         
-    }catch()
+        }
+
+        window.rawMatches = data.matches || [];
+
+        applyFilters();
+    }catch(err){
+        console.error('Fetch Error', err);
+        if(alertBox){
+            alertBox.textContent = err.message;
+            alertBox.style.display = 'block';
+        }
+    } finally{
+        if(refreshBtn){
+            refreshBtn.classList.remove('loading');
+            refreshBtn.disable = false;
+        }
+    }
 }
