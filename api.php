@@ -72,7 +72,21 @@ try{
 
         ];
     }
+    echo json_encode([
+                        'status' => 'success',
+                        'counts' => [
+                                    'all' => count($formattedMatches),
+                                    'live' => count(array_fiter($formattedMatches, fn($m) => $m['category'] === 'live')),
+                                    'finished' =>  count(array_fiter($formattedMatches, fn($m) => $m['category'] === 'finished')),
+                                    'upcoming' => count(array_fiter($formattedMatches, fn($m) => $m['category'] === 'upcoming'))
+                        ],
+                        'matches' => $formattedMatches
+    ]);
 
-} catch( Exception){
-
+} catch( Exception $e){
+    http_response_code(500);
+    echo json_encode([
+                'status' => 'error',
+                'error' => $e->getMessage()
+    ]);
 }
