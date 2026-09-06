@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
 $apiKey = "";
-$url ="";
+$url ="https://api.football-data.org/v4/matches";
 $options = [
     'http' => [
         'method' => 'GET',
