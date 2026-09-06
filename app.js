@@ -13,7 +13,7 @@ function bindGlobalEvents(){
         leagueSelect.onchange = (e) =>{
             window.currentLeague = String(e.target.value).trim().toUpperCase();
             applyFilters();
-        }
+        };
     }
 
     document.addEventListener('click', (e)=>{
@@ -44,16 +44,11 @@ async function fetchMatches(){
     }
     try{
         const response = await fetch('api.php?t='+new Date().getTime());
-        if(!response.ok){
-            throw new Error(`HTTP ${response.status} - ${response.statusText}`);
-        }
+        
         let rawText = await response.text();
 
-        rawText = rawText.replace(/^\uFEFF/,'').trim();
+        rawText = rawText.replace(/^\uFEFF/, '').trim();
 
-        if(!rawText){
-            throw new Error('api.php devolvió una respuesta vacía.');
-        }
 
         const firstBrace = rawText.indexOf('{');
         const lastBrace = rawText.lastIndexOf('}');
@@ -187,7 +182,7 @@ function renderGoals(match){
                 ${homeGoals.map(g => `<div>⚽ <strong>${escapeHtml(g.scorer)}</strong>${g.minute}´</div>`).join('') }
             </div>
             <div class="goals-col away-goals">
-                ${awayGoals.map(g => `<div>${g.minute}´ <strong>${escapeHtml(g.scorer)}</strong> ⚽</div>`).join('')}
+                ${awayGoals.map(g => `<div>${g.minute}' <strong>${escapeHtml(g.scorer)}</strong> ⚽</div>`).join('')}
             </div>
         </div>
     `;
@@ -201,7 +196,7 @@ function formatToGMT(dateStr){
     if(isNaN(date.getTime())) return dateStr;
 
     const hours = String(date.getUTCHours()).padStart(2,'0');
-    const minutes = String(date.getUTCMinutes().padStart(2,'0'));
+    const minutes = String(date.getUTCMinutes()).padStart(2,'0');
 
     return `${hours}:${minutes} GMT`;
 }
@@ -233,7 +228,7 @@ function escapeHtml(str){
 
 function getLiveMinute(match){
     if(match.minute){
-        return `${match.minute}´`;
+        return `${match.minute}'`;
     }
     if(!match.utcDate) return 'LIVE';
 
@@ -245,7 +240,7 @@ function getLiveMinute(match){
     if(diffMinutes < 0) return '0\'';
     if(diffMinutes <= 45) return `${diffMinutes}'`;
     if(diffMinutes >45 && diffMinutes <=60) return 'ET';
-    if(diffMinutes >60 && diffMinutes <=105) return `${diffMinutes -15}´`;
+    if(diffMinutes >60 && diffMinutes <=105) return `${diffMinutes -15}'`;
     return '90+\'';
 }
 
