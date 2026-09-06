@@ -37,14 +37,14 @@ async function fetchMatches(){
 
     if(refreshBtn){
         refreshBtn.classList.add('loading');
-        refreshBtn.disable = true;
+        refreshBtn.disabled = true;
     }
     if(alertBox){
         alertBox.style.display = 'none';
     }
     try{
         const response = await fetch('api.php?t='+new Date().getTime());
-        let rawText = await response.text;
+        let rawText = await response.text();
 
         rawText = rawText.replace(/^\uFEFF/,'').trim();
         const firstBrace = rawText.indexOf('{');
@@ -74,7 +74,7 @@ async function fetchMatches(){
     } finally{
         if(refreshBtn){
             refreshBtn.classList.remove('loading');
-            refreshBtn.disable = false;
+            refreshBtn.disabled = false;
         }
     }
 }
