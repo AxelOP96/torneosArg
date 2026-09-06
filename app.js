@@ -44,9 +44,17 @@ async function fetchMatches(){
     }
     try{
         const response = await fetch('api.php?t='+new Date().getTime());
+        if(!response.ok){
+            throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+        }
         let rawText = await response.text();
 
         rawText = rawText.replace(/^\uFEFF/,'').trim();
+
+        if(!rawText){
+            throw new Error('api.php devolvió una respuesta vacía.');
+        }
+
         const firstBrace = rawText.indexOf('{');
         const lastBrace = rawText.lastIndexOf('}');
 
