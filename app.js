@@ -19,7 +19,7 @@ function bindGlobalEvents(){
     document.addEventListener('click', (e)=>{
         const tabBtn = e.target.closest('.tab-btn');
         if(tabBtn){
-            document.querySelector('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             tabBtn.classList.add('active');
 
             window.currentCategory = String(tabBtn.dataset.category || 'all').toLowerCase();
@@ -217,7 +217,7 @@ function getStatusBadge(match){
 function escapeHtml(str){
     if(!str) return '';
     return String(str)
-        .replace(/&/g/'&amp;')
+        .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
