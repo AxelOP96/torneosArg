@@ -213,3 +213,30 @@ function getStatusBadge(match){
         return `<span class="status-badge upcoming"> ${timeStr}<small style="display:block; font-size:0.65rem; opacity:0.8;">${dateStr}</small></span>`;
     }
 }
+
+function escapeHtml(str){
+    if(!str) return '';
+    return String(str)
+        .replace(/&/g/'&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+function getLiveMinute(match){
+    if(match.minute){
+        return `${match.minute}´`;
+    }
+    if(!match.utcDate) return 'LIVE';
+
+    const matchStart = new Date(match.utcDate).getTime();
+    const now = new Date().getTime();
+
+    const diffMinutes = Math.floor((now - matchStart) / (1000 * 60));
+
+    if(diffMinutes < 0) return '0\'';
+    if(diffMinutes <= 45) return `${diffMinutes}'`;
+    if(diffMinutes >45 && diffMinutes <=60) return 'ET';
+    if(diffMinutes >60 && diffMinutes <=105) return `${diffMinutes -15}´`;
+    return '90+\'';
+}
