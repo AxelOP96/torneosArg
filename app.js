@@ -158,3 +158,29 @@ function renderMatches(matches, container){
 
     ).join('');
 }
+
+function renderGoals(match){
+    const goals = match.goals || [];
+    const totalScore = (match.score?.home || 0) + (match.score?.away || 0);
+
+    if(goals.length === 0){
+        if(totalScore > 0 && (String(match.category).toLowerCase() === 'live' || String(match.category).toLowerCase() === 'finished')){
+            return `<div class="match-goals no-details" style="text-align:center; font-size:0.75rem; color:#888;">Detalles de goles no provistos</div>`;
+        }
+        return '';
+    }
+
+    const homeGoals = goals.filter(g => g.team === 'home');
+    const awayGoals = goals.filter(g => g.team === 'away');
+
+    return `
+        <div class="match-goals">
+            <div class="goals-col home-goals">
+                ${homeGoals.map(g => `<div>⚽ <strong>${escapeHtml(g.scorer)}</strong>${g.minute}´</div>`).join('') }
+            </div>
+            <div class="goals-col away-goals">
+                ${awayGoals.map(g => `<div>${g.minute}´ <strong>${escapeHtml(g.scorer)}</strong> ⚽</div>`).join('')}
+            </div>
+        </div>
+    `;
+}
