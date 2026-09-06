@@ -184,3 +184,32 @@ function renderGoals(match){
         </div>
     `;
 }
+
+function formatToGMT(dateStr){
+    if(!dateStr) return 'TBD';
+
+    const date = new Date(dateStr);
+
+    if(isNaN(date.getTime())) return dateStr;
+
+    const hours = String(date.getUTCHours()).padStart(2,'0');
+    const minutes = String(date.getUTCMinutes().padStart(2,'0'));
+
+    return `${hours}:${minutes} GMT`;
+}
+
+function getStatusBadge(match){
+    const cat = String(match.category || '').toLowerCase();
+
+    if(cat === 'live'){
+        return `<span class="status-badge live"> ${getLiveMinute(match)}</span>`
+    }
+    else if(cat === 'finished'){
+        return `<span class="status-badge finished"> FT}</span>`
+    }
+    else{
+        const timeStr = formatToGMT(match.utcDate || match.time);
+        const dateStr = formatMatchDate(match.utcDate);
+        return `<span class="status-badge upcoming"> ${timeStr}<small style="display:block; font-size:0.65rem; opacity:0.8;">${dateStr}</small></span>`;
+    }
+}
