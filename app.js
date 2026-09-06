@@ -126,7 +126,7 @@ function renderMatches(matches, container){
         container.innerHTML = '<div class="no-matches-msg" style="padding: 2rem; text-align:center; color: #888;">No se encontraron partidos.</div>';
         return ;
     }
-    container.innerHTML = matches.map( match =>
+    container.innerHTML = matches.map( match => `
         <div class="match-card">
             <div class="match-header">
                 <span class="league-title">${escapeHtml(match.competition)}</span>
@@ -156,7 +156,7 @@ function renderMatches(matches, container){
             ${renderGoals(match)}
         </div>
 
-    ).join('');
+    `).join('');
 }
 
 function renderGoals(match){
