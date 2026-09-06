@@ -202,10 +202,10 @@ function getStatusBadge(match){
     const cat = String(match.category || '').toLowerCase();
 
     if(cat === 'live'){
-        return `<span class="status-badge live"> ${getLiveMinute(match)}</span>`
+        return `<span class="status-badge live"> ${getLiveMinute(match)}</span>`;
     }
     else if(cat === 'finished'){
-        return `<span class="status-badge finished"> FT}</span>`
+        return `<span class="status-badge finished"> FT</span>`;
     }
     else{
         const timeStr = formatToGMT(match.utcDate || match.time);
