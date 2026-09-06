@@ -120,3 +120,41 @@ function updateCounts(counts = {}){
     if(elFinished) elFinished.textContent = `(${counts.finished ?? 0})`;
     if(elUpcoming) elUpcoming.textContent = `(${counts.upcoming ?? 0})`;
 }
+
+function renderMatches(matches, container){
+    if(matches.length === 0){
+        container.innerHTML = '<div class="no-matches-msg" style="padding: 2rem; text-align:center; color: #888;">No se encontraron partidos.</div>';
+        return ;
+    }
+    container.innerHTML = matches.map( match =>
+        <div class="match-card">
+            <div class="match-header">
+                <span class="league-title">${escapeHtml(match.competition)}</span>
+                ${getStatusBadge(match)}
+            </div>
+            <div class="match-body">
+                <div class="team home">
+                    <span class="team-name">${escapeHtml(match.homeTeam.name)}</span>
+                    ${match.homeTeam.crest ? `<img class="team-logo" src="${match.homeTeam.crest}" alt="crest" onerror="this.style.display='none'">` : ''}
+                </div>
+            <div class="score-board">
+                ${String(match.category).toLowerCase() === 'live'
+                ? `<div class="score">${match.score.home} - ${match.score.away}</div>
+                    <div class="live-time-ticker">${getLiveMinute(match)}</div>`
+                : String(match.category).toLowerCase() === 'finished'
+                    ? `<div class="score">${match.score.home} - ${match.score.away}</div>`
+                    :   `<div class="upcoming-time-box">
+                            <span class="match-time">${formatToGMT(match.utcDate || match.time)}</span>
+                            <span class="match-date">${formatMatchDate(match.utcDate)}</span>
+                        </div>`}
+            </div>
+            <div class="team-away">
+                ${match.awayTeam.crest ? `<img class="team-logo" src="${match.awayTeam.crest}" alt="crest" onerror="this.style.display='none'">` : ''}
+                <span class="team-name">${escapeHtml(match.awayTeam.name)}</span>
+            </div>
+            </div>
+            ${renderGoals(match)}
+        </div>
+
+    ).join('');
+}
