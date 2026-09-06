@@ -240,3 +240,18 @@ function getLiveMinute(match){
     if(diffMinutes >60 && diffMinutes <=105) return `${diffMinutes -15}´`;
     return '90+\'';
 }
+
+function formatMatchDate(dateStr){
+    if(!dateStr){
+        return '';
+    }
+    const date = new Date(dateStr);
+    if(isNaN(date.getTime())) return '';
+
+    return date.toLocaleDateString('en-US', {
+        timeZone : 'UTC',
+        month: 'short',
+        day: 'numeric'
+    });
+}
+
